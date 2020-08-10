@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>轱辘</title>
+  <link rel="stylesheet" href="./iconfont/iconfont.css">
   <style>
     * {margin: 0; padding: 0; box-sizing: border-box;}
+    .icon {
+        width: 10em;
+        height: 10em;
+    }
     :root {
       --button-height: 32px;
       --font-size: 14px;
@@ -23,6 +28,12 @@
     body {
       font-size: var(--font-size);
     }
+    .icon {
+        width: 1em; height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
   </style>
   <style>
     
@@ -30,8 +41,13 @@
 </head>
 <body>
 <div id="app">
-  <g-button></g-button>
+  <span class=" iconfont icon-xianxingbianji"></span>
+  <span class="icon iconfont">&#xe663;</span>
+  <svg class="icon" aria-hidden="true">
+    <use xlink:href="#icon-xianxingbianji"></use>
+  </svg>
 </div>
 <script src="./app.js"></script>
+<script src="./iconfont/iconfont.js"></script>
 </body>
 </html> 

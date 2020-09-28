@@ -1,5 +1,9 @@
 <template>
-  <button class="g-button">按钮</button>
+  <button class="g-button">
+    <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-setting"></use>
+    </svg>
+  按钮</button>
 </template>
 <script>
 export default {

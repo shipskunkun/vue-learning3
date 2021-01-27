@@ -1,7 +1,8 @@
 # vue-learning3
 
+33集
 
-
+https://xiedaimala.com/courses/6d63da67-6eea-4711-aeb4-0c3a949341dc/random/4e8120dd42#/common
 
 [饥人谷Vue造轮子从基础到高级视频教程 ](http://vlambda.com/wz_wRNSkG6EFN.html)
 

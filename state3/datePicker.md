@@ -77,11 +77,31 @@ new Date(year , month,  0)
 
 ​	
 
-添加上个月数据的天数？如果 getDay == 0 ，表示当月第一天是周日，则添加上个月的日期天数是 0个， 如果getDay == 1, 添加1个上个月数据
+添加上个月数据的天数？如果 getDay == 0 ，表示当月第一天是周日，则添加上个月的日期天数是 0个， 如果getDay == 1, 添加1个上个月数据，所以上个月添加天数 n = getDay
 
-所以上个月添加n = getData 个数据，
+比如 n = 3, 表示本月第一天是周三，要添加3个上个月日子
 
-上个月最后一天 - n,  上个月最后一天  - （n-1）...
+new Date(year, month -1, 0)  // 上个月最后一天
+
+上个月最后一天前一天
+
+上个月最后一天前2天
+
+```js
+let preMonthDayCount = new Date(year, month - 1, 1).getDay();  //本月第一天，周几
+let lastDayOfLastMonth = new Date(year, month - 1, 0).getDate() // 上个月的最后一天
+
+// 添加的上个月的日子数据。
+let arr = [];
+for(let i = preMonthDayCount ; i>0; i--) {
+  arr.push(lastDayOfLastMonth - i + 1)
+}
+
+上个月最后一天，31号
+当 i= 3, 29
+i= 2, 30
+i = 1, 31
+```
 
 
 
@@ -91,23 +111,54 @@ new Date(year , month,  0)
 
 所以下个月补充，几个日子数据？ getDay - 6个。
 
+```js
+统一处理
+let preMonthDayCount = new Date(year, month - 1, 1).getDay();  //本月第一天，周几
+let lastDayOfLastMonth = new Date(year, month - 1, 0).getDate() // 上个月的最后一天
+
+var lastDay = new Date(year, month , 0)  //本月最后一天周几
+var lastDate = lastDay.getDate(); //本月有几天。
+
+for(let i = 0; i < 7*6; i++) {
+	var date = i + 1 - preMonthDayCount
+  var showDate = date;
+  var thisMonth = month;
+  
+  if(date <=0 ){
+    thisMonth = month - 1;
+    showDate = lastDateOfLastMonth() + date   // 比如上个月最后一天 31 + -2 = 29
+  }else if (date > lastDate) {
+    thisMonth = month + 1;   
+    showDate = showDate - lastDate;
+  }
+  if(thisMonth ===0) thisMonth = 12
+  if(thisMonth ===13) thisMonth = 1
+  
+  ret.psuh({
+    month: month,
+    date: date,
+    showDate: showDate
+  })
+}
+```
+
 
 
 #### 4章 数据渲染
 
-根据返回的数组渲染，比如长度有40， 如果%7 ==0 ，换行
+根据返回的数组渲染  monthDate, 是长度42的一维数组，i%7 ==0 ，换行
 
 获取当前年月
 
-
-
 展示，视频中是  input   focus 的时候，去掉 table
+
+
 
 #### 5章 事件绑定
 
 ##### 5-1 如何在 input  focus 的时候，隐藏日历组件？
 
-监听 focus，table  去掉一个class，   display: block 
+监听 focus，table  去掉一个class，   这个class，display: block 
 
 else， 添加class，display: block
 
@@ -117,7 +168,7 @@ else， 添加class，display: block
 
 通过事件代理，在 wrapper 上处理 a标签的点击事件
 
-#### 5-3 日子点击
+##### 5-3 日子点击
 
 通过事件代理，在 wrapper 上处理  日历单元格 的点击事件
 
@@ -127,7 +178,7 @@ else， 添加class，display: block
 
 方法一，上个月不准点。
 
-方法二，
+方法二，点击能获取渲染点的 obj 对象，里面有 month, 如果不等于当前月，返回。
 
 #### 6章 课程总结
 

@@ -41,8 +41,9 @@
 <style scoped>
 </style>
 <script>
-  import GButton from '../../../src/button/button'
-  import GPopover from '../../../src/popover'
+
+  import GButton from '../../components/button/button'
+  import GPopover from '../../components/popover'
 
 
   export default {

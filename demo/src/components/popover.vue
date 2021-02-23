@@ -75,9 +75,9 @@
         }
       },
       putBackContent(){
-        const {contentWrapper, popover} = this.$refs
-        if(!contentWrapper){return}
-        popover.appendChild(contentWrapper)
+        // const {contentWrapper, popover} = this.$refs
+        // if(!contentWrapper){return}
+        // popover.appendChild(contentWrapper)
       },
       positionContent () {
         const {contentWrapper, triggerWrapper} = this.$refs

@@ -1,7 +1,7 @@
 <template>
   <div class="cascaderItem" :style="{height: height}">
     <div class="left">
-      <div class="label" v-for="item in items" @click="onClickLabel(item)">
+      <div class="label" v-for="item in items" @click="onClickLabel(item)"  :key="item.name">
         <span class="name">{{item.name}}</span>
         <span class="icons">
           <template v-if="item.name === loadingItem.name">
@@ -58,6 +58,7 @@
             return selected[0].children
           }
         }
+        return null;
       },
     },
     mounted () {
@@ -68,6 +69,7 @@
       },
       onClickLabel (item) {
         let copy = JSON.parse(JSON.stringify(this.selected))
+        console.log('this.selected', JSON.stringify(this.selected));
         copy[this.level] = item
         copy.splice(this.level + 1) // 一句话
         this.$emit('update:selected', copy)
@@ -80,7 +82,32 @@
 </script>
 
 <style scoped lang="scss">
-  @import "var";
+ $border-color-hover: #666;
+$border-color: #999;
+$border-color-light: lighten($border-color, 30%);
+$border-radius: 4px;
+$box-shadow-color: rgba(0, 0, 0, 0.5);
+$button-active-bg: #eee;
+$button-bg: white;
+$button-height: 32px;
+$color: #333;
+$light-color: #666;
+$font-size: 14px;
+$small-font-size: 12px;
+$input-height: 32px;
+$red: #F1453D;
+$grey: #eee;
+$blue: #4a90e2;
+.box-shadow {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@mixin spin {
+  animation: spin 2s infinite linear;
+}
   .cascaderItem {
     display: flex;
     align-items: flex-start;

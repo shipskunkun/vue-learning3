@@ -1,12 +1,13 @@
 <template>
   <div class="cascader" ref="cascader" v-click-outside="close">
+    <div> {{ selected }} </div> 
     <div class="trigger" @click="toggle">
       {{result || '&nbsp;'}}
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
-      <cascader-items :items="source" class="popover" :loadData="loadData"
-        :loading-item="loadingItem"
-        :height="popoverHeight" :selected="selected" @update:selected="onUpdateSelected"></cascader-items>
+      <cascader-items :items="source" class="popover"    :loadData="loadData"
+          :loading-item="loadingItem"
+          :height="popoverHeight" :selected="selected" @update:selected="onUpdateSelected"></cascader-items>
     </div>
   </div>
 </template>
@@ -57,6 +58,8 @@
       },
       onUpdateSelected (newSelected) {
         this.$emit('update:selected', newSelected)
+        console.log('newSelected', newSelected);
+        
         let lastItem = newSelected[newSelected.length - 1]
         let simplest = (children, id) => {
           return children.filter(item => item.id === id)[0]
@@ -104,6 +107,7 @@
     },
     computed: {
       result () {
+        // console.log('cascader中this.selected', this.selected)
         return this.selected.map((item) => item.name).join('/')
       }
     }

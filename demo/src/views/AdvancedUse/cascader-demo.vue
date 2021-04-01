@@ -41,6 +41,24 @@
             {name: '嘉善'},
             ]
           }]
+        },{
+          name: '安徽',
+          children: [{
+            name: '合肥',
+            children: [
+            {name: '庐江'},
+            {name: '肥东'},
+            {name: '肥西'},
+            ]
+          },
+          {
+            name: '芜湖',
+            children: [
+            {name: '弋江区'},
+            {name: '鸠江区'},
+            {name: '三山区'},
+            ]
+          }]
         }] 
       }
     },

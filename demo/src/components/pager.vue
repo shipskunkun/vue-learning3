@@ -1,4 +1,4 @@
-<template>
+x<template>
   <div class="gulu-pager" :class="{hide: hideIfOnePage === true && totalPage <= 1}">
     <span class="gulu-pager-nav prev" :class="{disabled:currentPage===1}"
       @click="onClickPage(currentPage-1)">
@@ -6,13 +6,13 @@
     </span>
     <template v-for="page in pages">
       <template v-if="page === currentPage">
-        <span class="gulu-pager-item current">{{page}}</span>
+        <span class="gulu-pager-item current" :key="page">{{page}}</span>
       </template>
       <template v-else-if="page === '...'">
-        <g-icon class="gulu-pager-separator" name="dots"></g-icon>
+        <g-icon class="gulu-pager-separator" name="dots" :key="page"></g-icon>
       </template>
       <template v-else>
-        <span class="gulu-pager-item other" @click="onClickPage(page)">{{page}}</span>
+        <span class="gulu-pager-item other" @click="onClickPage(page)" :key="page">{{page}}</span>
       </template>
     </template>
     <span class="gulu-pager-nav next" :class="{disabled: currentPage===totalPage}"
@@ -22,7 +22,35 @@
   </div>
 </template>
 <style scoped lang="scss">
-  @import "var";
+ $border-color-hover: #666;
+$border-color: #999;
+$border-color-light: lighten($border-color, 30%);
+$border-radius: 4px;
+$box-shadow-color: rgba(0, 0, 0, 0.5);
+$button-active-bg: #eee;
+$button-bg: white;
+$button-height: 32px;
+$color: #333;
+$light-color: #666;
+$font-size: 14px;
+$small-font-size: 12px;
+$input-height: 32px;
+$red: #F1453D;
+$grey: #eee;
+$blue: #4a90e2;
+.box-shadow {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@mixin spin {
+  animation: spin 2s infinite linear;
+}
+
+
+
   .gulu-pager { display: flex; justify-content: flex-start; align-items: center; user-select: none;
     $width: 20px; $height: 20px; $font-size: 12px;
     &.hide { display: none; }

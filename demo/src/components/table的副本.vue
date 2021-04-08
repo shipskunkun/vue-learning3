@@ -4,9 +4,6 @@
       <table class="gulu-table" :class="{bordered, compact, striped: striped}" ref="table">
         <thead>
         <tr>
-          <th v-if="expendField" :style="{width: '50px'}" class="gulu-table-center"></th>
-          <th v-if="checkable" :style="{width: '50px'}" class="gulu-table-center">
-            <input type="checkbox" @change="onChangeAllItems" ref="allChecked" :checked="areAllItemsSelected"/></th>
           <th :style="{width: '50px'}" v-if="numberVisible">#</th>
           <th :style="{width: column.width + 'px'}" v-for="column in columns" :key="column.field">
             <div class="gulu-table-header">
@@ -169,17 +166,6 @@
     },
 
     computed: {
-      areAllItemsSelected () {
-        const a = this.dataSource.map(item => item.id).sort()
-        const b = this.selectedItems.map(item => item.id).sort()
-        if (a.length !== b.length) { return false }
-        let equal = true
-        for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) {
-          equal = false
-          break
-        }
-        return equal
-      },
       expendedCellColSpan () {
         let result = 0
         if (this.checkable) { result += 1 }
@@ -187,17 +173,7 @@
         return result
       }
     },
-    watch: {
-      selectedItems () {
-        if (this.selectedItems.length === this.dataSource.length) {
-          this.$refs.allChecked.indeterminate = false
-        } else if (this.selectedItems.length === 0) {
-          this.$refs.allChecked.indeterminate = false
-        } else {
-          this.$refs.allChecked.indeterminate = true
-        }
-      }
-    },
+   
     methods: {
       inExpendedIds (id) {
         return this.expendedIds.indexOf(id) >= 0
@@ -209,35 +185,6 @@
           this.expendedIds.push(id)
         }
       },
-      changeOrderBy (key) {
-        const copy = JSON.parse(JSON.stringify(this.orderBy))
-        let oldValue = copy[key]
-        if (oldValue === 'asc') {
-          copy[key] = 'desc'
-        } else if (oldValue === 'desc') {
-          copy[key] = true
-        } else {
-          copy[key] = 'asc'
-        }
-        this.$emit('update:orderBy', copy)
-      },
-      inSelectedItems (item) {
-        return this.selectedItems.filter(i => i.id === item.id).length > 0
-      },
-      onChangeItem (item, index, e) {
-        let selected = e.target.checked
-        let copy = JSON.parse(JSON.stringify(this.selectedItems))
-        if (selected) {
-          copy.push(item)
-        } else {
-          copy = copy.filter(i => i.id !== item.id)
-        }
-        this.$emit('update:selectedItems', copy)
-      },
-      onChangeAllItems (e) {
-        let selected = e.target.checked
-        this.$emit('update:selectedItems', selected ? this.dataSource : [])
-      }
     }
   }
 </script>

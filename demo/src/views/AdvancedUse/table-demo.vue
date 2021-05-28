@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="margin: 20px">
-      <g-table :columns="columns" :data-source="dataSource"></g-table>
+      <g-table :columns="columns" :data-source="dataSource" :height="400"></g-table>
     </div>
     <div style="margin: 20px">
       <g-pager :total-page="10" :current-page.sync="currentPage"></g-pager>
@@ -28,6 +28,26 @@
         {text: '分数', field: 'score'},
         ],
         dataSource:[ 
+          {id: 1, name: '方方', score: 100},
+          {id: 2, name: '圆圆', score: 88},
+          {id: 3, name: '张三', score: 99},
+          {id: 4, name: '李四', score: 80},
+          {id: 5, name: '超人', score: 90},
+          {id: 1, name: '方方', score: 100},
+          {id: 2, name: '圆圆', score: 88},
+          {id: 3, name: '张三', score: 99},
+          {id: 4, name: '李四', score: 80},
+          {id: 5, name: '超人', score: 90},
+          {id: 1, name: '方方', score: 100},
+          {id: 2, name: '圆圆', score: 88},
+          {id: 3, name: '张三', score: 99},
+          {id: 4, name: '李四', score: 80},
+          {id: 5, name: '超人', score: 90},
+          {id: 1, name: '方方', score: 100},
+          {id: 2, name: '圆圆', score: 88},
+          {id: 3, name: '张三', score: 99},
+          {id: 4, name: '李四', score: 80},
+          {id: 5, name: '超人', score: 90},
           {id: 1, name: '方方', score: 100},
           {id: 2, name: '圆圆', score: 88},
           {id: 3, name: '张三', score: 99},

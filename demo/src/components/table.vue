@@ -77,10 +77,13 @@
     data () {
       return {
         expendedIds: [],
-        columns: []
+        // columns: []
       }
     },
     props: {
+      columns: {
+        type: Array
+      },
       height: {
         type: Number
       },
@@ -128,13 +131,15 @@
       }
     },
     mounted () {
-      this.columns = this.$slots.default.map(node => {
-        let {text, field, width} = node.componentOptions.propsData
-        let render = node.data.scopedSlots && node.data.scopedSlots.default
-        return {text, field, width, render}
-      })
-      let result = this.columns[0].render({value: '方方'})
-      console.log(result)
+
+      console.log('接受的参数', this.columns)
+      // this.columns = this.$slots.default.map(node => {
+      //   let {text, field, width} = node.componentOptions.propsData
+      //   let render = node.data.scopedSlots && node.data.scopedSlots.default
+      //   return {text, field, width, render}
+      // })
+      // let result = this.columns[0].render({value: '方方'})
+      // console.log(result)
 
       let table2 = this.$refs.table.cloneNode(false)
       this.table2 = table2
